@@ -3,11 +3,13 @@
   "version": "1.0.2",
   "description": "Simple hook to detect when user has clicked outside of a specified element.",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "tsup": {
     "entry": [
       "src/index.ts"
     ],
+    "format": ["esm", "cjs"],
     "dts": true
   },
   "scripts": {
