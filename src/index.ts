@@ -1,14 +1,18 @@
-import { MutableRefObject, useCallback, useEffect } from "react";
+import { MutableRefObject, useCallback, useEffect, useRef } from "react";
 
-export default function useOnClickOutside<T extends HTMLElement>(ref: MutableRefObject<T>, onClick: (event: MouseEvent) => void) {
-    const handleEvent = useCallback((event: MouseEvent) => {
-        if (!ref.current?.contains(event.target as HTMLElement)) {
-            onClick(event);
-        }
-    }, [ref, onClick])
+export default function useOnClickOutside(onClick: (event: MouseEvent) => void) {
+    const ref = useRef<HTMLElement>();
 
     useEffect(() => {
+        const handleEvent = (event: MouseEvent) => {
+            if (!ref.current?.contains(event.target as HTMLElement)) {
+                onClick(event);
+            }
+        }
+
         window.addEventListener("click", handleEvent);
         return () => window.removeEventListener("click", handleEvent);
-    }, [handleEvent]);
+    }, [ref, onClick]);
+
+    return ref;
 }
