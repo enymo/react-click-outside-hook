@@ -1,6 +1,6 @@
 {
   "name": "@enymo/react-click-outside-hook",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Simple hook to detect when user has clicked outside of a specified element.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
