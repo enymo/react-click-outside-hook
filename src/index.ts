@@ -1,6 +1,6 @@
-import { MutableRefObject, useCallback, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
-export default function useOnClickOutside(onClick: (event: MouseEvent) => void) {
+export default function useOnClickOutside(onClick: (event: MouseEvent) => void, dependencies: React.DependencyList = []) {
     const ref = useRef<HTMLElement>();
 
     useEffect(() => {
@@ -12,7 +12,7 @@ export default function useOnClickOutside(onClick: (event: MouseEvent) => void) 
 
         window.addEventListener("click", handleEvent);
         return () => window.removeEventListener("click", handleEvent);
-    }, [ref, onClick]);
+    }, [ref, ...dependencies]);
 
     return ref;
 }
